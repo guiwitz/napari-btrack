@@ -9,6 +9,8 @@ from magicgui.widgets import Container, PushButton, Widget, create_widget
 from pydantic import BaseModel
 from PyQt5.QtWidgets import QScrollArea
 from PyQt5.QtCore import Qt
+from PyQt5 import QtCore
+from functools import partial
 
 import napari
 
@@ -424,7 +426,10 @@ def track() -> Container:
     scroll.setWidgetResizable(True)
         
     scroll.setWidget(btrack_widget._widget._qwidget)
-    scroll.ensureWidgetVisible(btrack_widget._widget._qwidget)
+    
+    QtCore.QTimer.singleShot(0, partial(scroll.ensureWidgetVisible, btrack_widget._widget._qwidget))
+
+    #scroll.ensureWidgetVisible(btrack_widget._widget._qwidget)
     btrack_widget._widget._qwidget = scroll
 
     return btrack_widget
