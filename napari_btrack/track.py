@@ -8,6 +8,7 @@ from magicgui.types import FileDialogMode
 from magicgui.widgets import Container, PushButton, Widget, create_widget
 from pydantic import BaseModel
 from PyQt5.QtWidgets import QScrollArea
+from PyQt5.QtCore import Qt
 
 import napari
 
@@ -418,6 +419,10 @@ def track() -> Container:
             _update_widgets_from_config(btrack_widget, config)
 
     scroll = QScrollArea()
+    scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+    scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+    scroll.setWidgetResizable(True)
+        
     scroll.setWidget(btrack_widget._widget._qwidget)
     btrack_widget._widget._qwidget = scroll
 
