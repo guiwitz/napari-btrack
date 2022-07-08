@@ -419,12 +419,12 @@ def track() -> Container:
             _update_widgets_from_config(btrack_widget, config)
 
     scroll = QScrollArea()
-    scroll.ensureWidgetVisible()
     #scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
     #scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
     scroll.setWidgetResizable(True)
         
     scroll.setWidget(btrack_widget._widget._qwidget)
+    scroll.ensureWidgetVisible(btrack_widget._widget._qwidget)
     btrack_widget._widget._qwidget = scroll
 
     return btrack_widget
